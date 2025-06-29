@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  color: #2c2c2c;
+}
+
+.container {
+  width: 87%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: -0.23px;
+  color: white;
+  text-align: center;
+  margin-top: 26px;
+  margin-bottom: 29px;
+}
+
+.map-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.background-pattern {
+  height: 300px;
+  background: url('./images/pattern-bg-mobile.png') 0 0 no-repeat;
+}
+
+main {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#ip-address-input-field {
+  height: 58px;
+  display: flex;
+  margin-bottom: 24px;
+}
+
+#ip-address-input-field > input,
+#ip-address-input-field > button {
+  height: 100%;
+}
+
+#ip-address-input-field > input {
+  flex-grow: 1;
+  font-size: 18px;
+  border: 0;
+  border-radius: 15px 0 0 15px;
+  padding: 19px 24px;
+  background: white;
+}
+
+#ip-address-input-field > input::placeholder {
+  color: hsl(0, 0%, 59%);
+}
+
+#ip-address-input-field > button {
+  width: 58px;
+  border: 0;
+  border-radius: 0 15px 15px 0;
+  background: black;
+}
+
+.ip-address-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: white;
+  border-radius: 15px;
+  padding: 26px 24px;
+  text-align: center;
+}
+
+.ip-address-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ip-address-details > div > span:first-child {
+  font-size: 10px;
+  font-weight: 700;
+  color: hsl(0, 0%, 59%);
+  letter-spacing: 1.46px;
+  text-transform: uppercase;
+}
+
+.ip-address-details > div > span:last-child {
+  font-size: 20px;
+  font-weight: 500;
+}
