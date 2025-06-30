@@ -30,29 +30,31 @@
             type="text"
             placeholder="Search for any IP address or domain"
           />
-          <button aria-label="Enter IP address button" aria-hidden="true">
+          <button aria-label="Enter IP address button">
             <img src="./images/icon-arrow.svg" alt="Arrow icon" />
           </button>
         </div>
         <div class="ip-address-details">
           <div>
             <span>IP Address</span>
-            <span>192.212.174.101</span>
+            <span class="ip-address"></span>
           </div>
           <div>
             <span>Location</span>
-            <span>Brooklyn, NY 10001</span>
+            <span class="ip-address-location"></span>
           </div>
           <div>
             <span>Timezone</span>
-            <span>UTC -05:00</span>
+            <span class="ip-address-timezone"></span>
           </div>
           <div>
             <span>ISP</span>
-            <span>SpaceX Starlink</span>
+            <span class="ip-address-isp"></span>
           </div>
         </div>
+        <div class="error"></div>
       </div>
     </main>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
