@@ -34,7 +34,7 @@ const updateIPAddressOrDomainDetails = (IPAddressInfo) => {
   const { ip, location, isp } = IPAddressInfo;
 
   IPAddressBlock.innerText = ip;
-  IPAddressLocationBlock.innerText = `${location.region}, ${location.country}`;
+  IPAddressLocationBlock.innerText = `${location.city}, ${location.region} ${location.postalCode}`;
   IPAddressTimezoneBlock.innerText = `UTC ${location.timezone}`;
   IPAddressIspBlock.innerText = isp ? isp : 'Not provided';
 };

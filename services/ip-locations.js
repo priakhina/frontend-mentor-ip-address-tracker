@@ -1,5 +1,5 @@
 const API_KEY = '<YOUR_API_KEY>';
-const BASE_URL = `https://geo.ipify.org/api/v2/country?apiKey=${API_KEY}`;
+const BASE_URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}`;
 
 const get = async (endpoint) => {
   try {
