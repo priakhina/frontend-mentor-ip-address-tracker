@@ -79,7 +79,7 @@ main {
   background: black;
 }
 
-.ip-address-details {
+.ip-address-info {
   display: none;
   flex-direction: column;
   gap: 24px;
@@ -89,13 +89,13 @@ main {
   text-align: center;
 }
 
-.ip-address-details > div {
+.ip-address-info > div {
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
 
-.ip-address-details > div > span:first-child {
+.ip-address-info > div > span:first-child {
   font-size: 10px;
   font-weight: 700;
   color: hsl(0, 0%, 59%);
@@ -103,7 +103,7 @@ main {
   text-transform: uppercase;
 }
 
-.ip-address-details > div > span:last-child {
+.ip-address-info > div > span:last-child {
   font-size: 20px;
   font-weight: 500;
 }

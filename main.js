@@ -1,4 +1,4 @@
-import IPLocationService from './services/ip-locations.js';
+import ipLocationService from './services/ip-locations.js';
 import validation from './helpers/validation-helpers.js';
 
 const inputField = document.querySelector('#ip-address-input-field > input');
@@ -6,16 +6,16 @@ const inputFieldButton = document.querySelector(
   '#ip-address-input-field > button'
 );
 
-const IPAddressDetailsBlock = document.querySelector('.ip-address-details');
-const IPAddressBlock = document.querySelector('.ip-address');
-const IPAddressLocationBlock = document.querySelector('.ip-address-location');
-const IPAddressTimezoneBlock = document.querySelector('.ip-address-timezone');
-const IPAddressIspBlock = document.querySelector('.ip-address-isp');
+const ipAddressInfoBlock = document.querySelector('.ip-address-info');
+const ipAddressBlock = document.querySelector('.ip-address');
+const ipAddressLocationBlock = document.querySelector('.ip-address-location');
+const ipAddressTimezoneBlock = document.querySelector('.ip-address-timezone');
+const ipAddressIspBlock = document.querySelector('.ip-address-isp');
 
 const errorBlock = document.querySelector('.error');
 
 const showError = (...messages) => {
-  IPAddressDetailsBlock.style.display = 'none';
+  ipAddressInfoBlock.style.display = 'none';
   errorBlock.style.display = 'flex';
 
   let errorHtml = '';
@@ -26,62 +26,64 @@ const showError = (...messages) => {
 };
 
 const hideError = () => {
-  IPAddressDetailsBlock.style.display = 'flex';
+  ipAddressInfoBlock.style.display = 'flex';
   errorBlock.style.display = 'none';
 };
 
-const updateIPAddressOrDomainDetails = (IPAddressInfo) => {
-  const { ip, location, isp } = IPAddressInfo;
+const renderIpAddressInfo = (info) => {
+  const { ip, location, isp } = info;
 
-  IPAddressBlock.innerText = ip;
-  IPAddressLocationBlock.innerText = `${location.city}, ${location.region} ${location.postalCode}`;
-  IPAddressTimezoneBlock.innerText = `UTC ${location.timezone}`;
-  IPAddressIspBlock.innerText = isp ? isp : 'Not provided';
+  ipAddressBlock.innerText = ip;
+  ipAddressLocationBlock.innerText = `${location.city}, ${location.region} ${location.postalCode}`;
+  ipAddressTimezoneBlock.innerText = `UTC ${location.timezone}`;
+  ipAddressIspBlock.innerText = isp ? isp : 'Not provided';
 };
 
-const getClientIPAddressDetails = () => {
-  IPLocationService.getIPAddressData()
+const getClientIpAddressInfo = () => {
+  ipLocationService
+    .getLocationDataByIpAddress()
     .then((data) => {
       hideError();
-      updateIPAddressOrDomainDetails(data);
+      renderIpAddressInfo(data);
     })
     .catch((e) => {
       showError(e.message);
     });
 };
 
-const getIPAddressOrDomainDetails = () => {
-  const { value } = inputField;
+const getIpAddressInfo = () => {
+  const { value: inputValue } = inputField;
+  inputField.value = '';
 
-  let getData;
-  if (validation.isValidIPAddress(value)) {
-    getData = IPLocationService.getIPAddressData;
-  } else if (validation.isValidDomain(value)) {
-    getData = IPLocationService.getDomainData;
+  let getLocationData;
+  if (validation.isValidIpAddress(inputValue)) {
+    getLocationData = ipLocationService.getLocationDataByIpAddress;
+  } else if (validation.isValidDomain(inputValue)) {
+    getLocationData = ipLocationService.getLocationDataByDomain;
   } else {
     showError(
-      `<span style="word-break: break-all;">"${value}"</span> is not a correct IP address or domain.`,
+      `<span style="word-break: break-all;">"${inputValue}"</span> is not a correct IP address or domain.`,
       'Please retry with the correct value.'
     );
     return;
   }
 
-  getData(value)
+  getLocationData(inputValue)
     .then((data) => {
       hideError();
-      updateIPAddressOrDomainDetails(data);
+      renderIpAddressInfo(data);
     })
     .catch((e) => {
       showError(e.message);
     });
 };
 
-getClientIPAddressDetails();
+getClientIpAddressInfo();
 
-inputFieldButton.addEventListener('click', getIPAddressOrDomainDetails);
+inputFieldButton.addEventListener('click', getIpAddressInfo);
 
 inputField.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    getIPAddressOrDomainDetails();
+    getIpAddressInfo();
   }
 });

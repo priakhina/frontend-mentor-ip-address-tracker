@@ -1,9 +1,9 @@
 const API_KEY = '<YOUR_API_KEY>';
 const BASE_URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}`;
 
-const get = async (endpoint) => {
+const get = async (url) => {
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(url);
 
     if (response.ok) {
       return await response.json();
@@ -13,17 +13,17 @@ const get = async (endpoint) => {
   }
 };
 
-const getIPAddressData = async (IPAddress) => {
-  const IPAddressQuery = IPAddress ? `&ipAddress=${IPAddress}` : '';
-  const endpoint = BASE_URL + IPAddressQuery;
+const getLocationDataByIpAddress = async (ip) => {
+  const query = ip ? `&ipAddress=${ip}` : '';
+  const url = BASE_URL + query;
 
-  return await get(endpoint);
+  return await get(url);
 };
 
-const getDomainData = async (domain) => {
-  const endpoint = BASE_URL + `&domain=${domain}`;
+const getLocationDataByDomain = async (domain) => {
+  const url = BASE_URL + `&domain=${domain}`;
 
-  return await get(endpoint);
+  return await get(url);
 };
 
-export default { getIPAddressData, getDomainData };
+export default { getLocationDataByIpAddress, getLocationDataByDomain };
