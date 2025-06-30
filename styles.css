@@ -33,12 +33,19 @@ h1 {
 
 .map-wrapper {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
 .background-pattern {
   height: 300px;
   background: url('./images/pattern-bg-mobile.png') 0 0 no-repeat;
+}
+
+#map {
+  flex-grow: 1;
+  z-index: 10;
 }
 
 main {
@@ -87,6 +94,8 @@ main {
   border-radius: 15px;
   padding: 26px 24px;
   text-align: center;
+  position: relative;
+  z-index: 20;
 }
 
 .ip-address-info > div {
@@ -114,6 +123,7 @@ main {
   gap: 24px;
   font-size: 20px;
   font-weight: 500;
+  color: #e91e63;
   background: white;
   border-radius: 15px;
   padding: 26px 24px;

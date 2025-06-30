@@ -14,6 +14,8 @@ const ipAddressIspBlock = document.querySelector('.ip-address-isp');
 
 const errorBlock = document.querySelector('.error');
 
+let map;
+
 const showError = (...messages) => {
   ipAddressInfoBlock.style.display = 'none';
   errorBlock.style.display = 'flex';
@@ -30,13 +32,48 @@ const hideError = () => {
   errorBlock.style.display = 'none';
 };
 
+const renderMap = (latitude, longitude) => {
+  if (map) {
+    map.remove();
+  }
+
+  map = L.map('map').setView([latitude, longitude], 17);
+  map.removeControl(map.zoomControl);
+
+  const tileUrl =
+    'https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=2WVD8zquwSbYnm8zCfZp';
+  const attribution =
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+  L.tileLayer(tileUrl, {
+    maxZoom: 20,
+    attribution,
+  }).addTo(map);
+
+  const icon = L.icon({
+    iconUrl: './images/icon-location.svg',
+  });
+
+  L.marker([latitude, longitude], { icon }).addTo(map);
+};
+
 const renderIpAddressInfo = (info) => {
   const { ip, location, isp } = info;
+  const {
+    city,
+    region,
+    postalCode,
+    timezone,
+    lat: latitude,
+    lng: longitude,
+  } = location;
 
   ipAddressBlock.innerText = ip;
-  ipAddressLocationBlock.innerText = `${location.city}, ${location.region} ${location.postalCode}`;
-  ipAddressTimezoneBlock.innerText = `UTC ${location.timezone}`;
+  ipAddressLocationBlock.innerText = `${city}, ${region} ${postalCode}`;
+  ipAddressTimezoneBlock.innerText = `UTC ${timezone}`;
   ipAddressIspBlock.innerText = isp ? isp : 'Not provided';
+
+  renderMap(latitude, longitude);
 };
 
 const getClientIpAddressInfo = () => {
@@ -53,6 +90,9 @@ const getClientIpAddressInfo = () => {
 
 const getIpAddressInfo = () => {
   const { value: inputValue } = inputField;
+
+  if (inputValue.trim() === '') return;
+
   inputField.value = '';
 
   let getLocationData;

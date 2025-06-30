@@ -8,8 +8,10 @@ const get = async (url) => {
     if (response.ok) {
       return await response.json();
     }
+
+    throw new Error('Failed to fetch data');
   } catch (e) {
-    console.log(e);
+    throw new Error(e.message);
   }
 };
 
