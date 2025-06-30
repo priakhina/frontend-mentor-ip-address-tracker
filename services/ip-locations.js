@@ -9,7 +9,7 @@ const get = async (url) => {
       return await response.json();
     }
 
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch data for this IP address or domain');
   } catch (e) {
     throw new Error(e.message);
   }

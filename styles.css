@@ -15,8 +15,18 @@ body {
   color: #2c2c2c;
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+}
+
 .container {
   width: 87%;
+  max-width: 1110px;
   margin: 0 auto;
 }
 
@@ -40,7 +50,8 @@ h1 {
 
 .background-pattern {
   height: 300px;
-  background: url('./images/pattern-bg-mobile.png') 0 0 no-repeat;
+  background: url('./images/pattern-bg-desktop.png') center 0 no-repeat;
+  background-size: cover;
 }
 
 #map {
@@ -58,7 +69,7 @@ main {
 #ip-address-input-field {
   height: 58px;
   display: flex;
-  margin-bottom: 24px;
+  margin: 0 auto 24px auto;
 }
 
 #ip-address-input-field > input,
@@ -67,12 +78,13 @@ main {
 }
 
 #ip-address-input-field > input {
-  flex-grow: 1;
+  width: 100%;
   font-size: 18px;
   border: 0;
   border-radius: 15px 0 0 15px;
   padding: 19px 24px;
   background: white;
+  text-overflow: ellipsis;
 }
 
 #ip-address-input-field > input::placeholder {
@@ -80,10 +92,15 @@ main {
 }
 
 #ip-address-input-field > button {
+  flex-shrink: 0;
   width: 58px;
   border: 0;
   border-radius: 0 15px 15px 0;
   background: black;
+}
+
+#ip-address-input-field > button:hover {
+  background: #3f3f3f;
 }
 
 .ip-address-info {
@@ -98,13 +115,13 @@ main {
   z-index: 20;
 }
 
-.ip-address-info > div {
+.ip-address-info .content {
   display: flex;
   flex-direction: column;
   gap: 7px;
 }
 
-.ip-address-info > div > span:first-child {
+.ip-address-info .content > span:first-child {
   font-size: 10px;
   font-weight: 700;
   color: hsl(0, 0%, 59%);
@@ -112,9 +129,11 @@ main {
   text-transform: uppercase;
 }
 
-.ip-address-info > div > span:last-child {
+.ip-address-info .content > span:last-child {
   font-size: 20px;
   font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.18px;
 }
 
 .error {
@@ -128,4 +147,85 @@ main {
   border-radius: 15px;
   padding: 26px 24px;
   text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  #ip-address-input-field {
+    width: 555px;
+  }
+}
+
+@media (min-width: 992px) {
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.29px;
+    margin-top: 33px;
+    margin-bottom: 31px;
+  }
+
+  .background-pattern {
+    height: 280px;
+  }
+
+  #ip-address-input-field {
+    margin-bottom: 48px;
+  }
+
+  .ip-address-info {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    text-align: left;
+    padding: 27px 0;
+  }
+
+  .ip-address-info > div {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  .ip-address-info > div::after {
+    display: block;
+    content: '';
+    width: 1px;
+    height: 75px;
+    background: #979797;
+    opacity: 0.5;
+    transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+    right: 0;
+  }
+
+  .ip-address-info > div:last-child:after {
+    display: none;
+  }
+
+  .ip-address-info .content {
+    padding: 0 32px;
+    flex-grow: 1;
+    gap: 13px;
+  }
+
+  .ip-address-info .content > span:first-child {
+    font-size: 12px;
+    letter-spacing: 1.75px;
+  }
+
+  .ip-address-info .content > span:last-child {
+    font-size: 23px;
+    line-height: 27px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ip-address-info .content > span:last-child {
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: -0.23px;
+  }
 }
