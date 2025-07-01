@@ -6,7 +6,8 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshots of the solution](#screenshots-of-the-solution)
+  - [Solution link](#solution-link)
+  - [Solution screenshots](#solution-screenshots)
   - [Built with](#built-with)
 - [Author](#author)
 
@@ -21,7 +22,11 @@ Users should be able to:
 - See their own IP address on the map on the initial page load
 - Search for any IP addresses or domains and see the key information and location
 
-### Screenshots of the solution
+### Solution link
+
+Live site URL: [kseniia-priakhina-ip-address-tracker.netlify.app](https://kseniia-priakhina-ip-address-tracker.netlify.app/)
+
+### Solution screenshots
 
 <table>
   <thead>
