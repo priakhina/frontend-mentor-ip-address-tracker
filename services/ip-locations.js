@@ -1,5 +1,6 @@
-const API_KEY = '<YOUR_API_KEY>';
-const BASE_URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}`;
+import { IPIFY_API_KEY } from '../config/config.js';
+
+const BASE_URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY}`;
 
 const get = async (url) => {
   try {
